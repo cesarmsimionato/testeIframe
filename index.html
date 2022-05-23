@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0e0e0e;
+    }
+
+    .content {
+      height: 100vh;
+      padding: 20px;
+    }
+
+    #iframe {
+      width: 680px;
+      height: 100%;
+      border: 2px solid #fff;
+      overflow: hidden;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="content">
+    <iframe id="iframe" src="iframe.html"></iframe>
+  </div>
+
+</body>
+
+<script>
+
+  const iframe = document.querySelector("#iframe")
+
+  iframe.addEventListener("load", (event) => {
+    const script = document.createElement("script")
+
+    script.textContent = `
+      document.addEventListener("scroll", function(){
+        console.log("teste")
+      })
+    `
+
+    event.target.contentDocument.body.appendChild(script)
+  })
+
+</script>
+
+</html>
